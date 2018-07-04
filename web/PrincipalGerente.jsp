@@ -44,8 +44,8 @@
         <link href="css/style.css" rel="stylesheet">
 
         <!-- Responsive Stylesheet File -->
-        <link href="css/responsive.css" rel="stylesheet"></head>
-
+        <link href="css/responsive.css" rel="stylesheet">
+    </head>
     <body data-spy="scroll" data-target="#navbar-example" ng-controller="principalGerenteController">
 
         <div id="preloader"></div>
@@ -69,7 +69,7 @@
                                     </button>
                                     <!-- Brand -->
                                     <a class="navbar-brand page-scroll sticky-logo" href="index.html">
-                                        <h1><span>e</span>Business</h1>
+                                        <h1><span>L</span>ibraryLocal</h1>
                                         <!-- Uncomment below if you prefer to use an image logo -->
                                         <!-- <img src="img/logo.png" alt="" title=""> -->
                                     </a>
@@ -119,7 +119,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="section-headline services-head text-center">
-                            <h2>Bienvenido {{ usuario.nombre}}</h2>
+                            <h2>Bienvenido {{usuario.tipo}} {{ usuario.nombre}}</h2>
                         </div>
                     </div>
                 </div>
@@ -127,58 +127,143 @@
         </div>
         <!-- End Slider Area -->
 
+
+
         <!-- Start About area -->
         <div id="about" class="about-area area-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="section-headline text-center">
-                            <h2>Libros</h2>
+                            <h2>Todos los libros</h2>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <!-- single-well start-->
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="well-left">
-                            <div class="single-well">
-                                <a href="#">
-                                    <img src="img/about/1.jpg" alt="">
-                                </a>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-menu">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active">
+                                    <a href="#p-view-1" role="tab" data-toggle="tab" ng-click="showLibros()" >Libros</a>
+                                </li>
+                                <li>
+                                    <a href="#p-view-1" role="tab" data-toggle="tab" ng-click="showFormulario()" >Agregar Nuevo</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="p-view-1">
+                                <h4></h4>
+                                <h4></h4>
+                                <div class="tab-inner">
+                                    <div class="event-content head-team" ng-if="mostrarLibros">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <div class="single-blog-page">
+                                                    <!-- search option start -->
+                                                    <form action="#">
+                                                        <div class="search-option" style="border: none;">
+                                                            <input type="text" ng-keyup="getLibrosSearch()" ng-model="searchLibro" placeholder="Search...">
+                                                            <button class="button" type="submit">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <!-- search option end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Autor</th>
+                                                    <th scope="col">Editorial</th>
+                                                    <th scope="col">Año</th>
+                                                    <th scope="col">Categoria</th>
+                                                    <th scope="col">Opciones</th>   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="libro in libros">
+                                                    <th scope="row">{{ libro.nombre}}</th>
+                                                    <td>{{libro.autor}}</td>
+                                                    <td>{{ libro.editorial}}</td>
+                                                    <td>{{ libro.ano_publicacion}}</td>
+                                                    <td>{{ libro.categoria}}</td>
+                                                    <td>
+                                                        <button class="btn btn-default" ng-click="editar(libro)"><i class="fa fa-pencil" ></i></button>
+                                                        <button class="btn btn-default" ng-click="eliminar(libro)"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="event-content head-team" ng-if="mostrarFormulario">
+                                        <h4>{{title}}</h4>
+                                        <div>
+                                            <form class="row">
+                                                <div class="form-group col-lg-6">
+                                                    Nombre
+                                                    <input ng-model="libro.nombre" type="text" name="nombre" class="form-control" placeholder="Nombre del Libro"  />                                                    
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Autor
+                                                    <input type="text" ng-model="libro.autor" class="form-control" name="autores" placeholder="Autores del Libro" />
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Editorial
+                                                    <input ng-model="libro.editorial" type="text" name="editorial" class="form-control" placeholder="Editorial del Libro"  />                                                    
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Precio
+                                                    <input type="number" ng-model="libro.precio" class="form-control" name="precio" placeholder="Precio del Libro" />
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Categoria
+                                                    <input ng-model="libro.categoria" type="text" name="categoria" class="form-control" placeholder="Cateogoria del Libro"  />                                                    
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Año de Publicacion
+                                                    <input type="number" ng-model="libro.ano_publicacion" class="form-control" name="anio" placeholder="Año del Libro" />
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Descripcion
+                                                    <input type="text" ng-model="libro.descripcion" class="form-control" name="descripcion" placeholder="Descripcion del Libro" />
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Status
+                                                    <input ng-model="libro.status" type="text" name="editorial" class="form-control" placeholder="Status del Libro"  />                                                    
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    Cantidad
+                                                    <input type="number" ng-model="libro.cantidad" class="form-control" name="cantidad" placeholder="Cantidad del Libro" />
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    Imagen del Libro
+                                                    <input type="file" name="image" onchange="angular.element(this).scope().uploadFile(this.files)">
+                                                    <img src="img/books/{{libro.foto}}">
+                                                </div>
+                                                <div class="text-center col-lg-6" ng-hide="formVisivility">
+                                                    <button ng-click="saveEditBook()" class="ready-btn page-scroll" >Actualizar Libro</button>
+                                                </div>
+                                                <div class="text-center col-lg-6" ng-hide="!formVisivility">
+                                                    <button ng-click="saveBook()" class="ready-btn page-scroll" >Registrar Libro</button>
+                                                </div>
+                                                <div class="text-center col-lg-6">
+                                                    <button ng-click="cancel()" class="ready-btn page-scroll">Cancelar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- single-well end-->
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="well-middle">
-                            <div class="single-well">
-                                <a href="#">
-                                    <h4 class="sec-head">project Maintenance</h4>
-                                </a>
-                                <p>
-                                    Redug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure aspernatur sit adipisci quaerat unde at nequeRedug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure
-                                </p>
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-check"></i> Interior design Package
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i> Building House
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i> Reparing of Residentail Roof
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i> Renovaion of Commercial Office
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i> Make Quality Products
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col-->
+
                 </div>
             </div>
         </div>

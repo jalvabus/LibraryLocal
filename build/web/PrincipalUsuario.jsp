@@ -70,7 +70,7 @@
                                     </button>
                                     <!-- Brand -->
                                     <a class="navbar-brand page-scroll sticky-logo" href="index.html">
-                                        <h1><span>e</span>Business</h1>
+                                        <h1><span>L</span>ibraryLocal</h1>
                                         <!-- Uncomment below if you prefer to use an image logo -->
                                         <!-- <img src="img/logo.png" alt="" title=""> -->
                                     </a>
@@ -82,7 +82,7 @@
                                             <a class="page-scroll" href="#home">Mi Perfil</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="#about">Libros</a>
+                                            <a class="page-scroll" href="#portfolio">Libros</a>
                                         </li>
                                         <li>
                                             <a class="page-scroll" href="#services">Eventos</a>
@@ -91,10 +91,10 @@
                                             <a class="page-scroll" href="#team">Premios</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="#portfolio">Mi Tarjeta</a>
+                                            <a class="page-scroll" href="#about">Mi Tarjeta</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="#blog">Blog</a>
+                                            <a class="page-scroll" href="/LibraryLocal/carrito.jsp">Carrito</a>
                                         </li>
                                         <li>
                                             <a class="page-scroll" href="#" ng-click="logout();">Cerrar Sesion</a>
@@ -118,13 +118,112 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="section-headline services-head text-center">
-                            <h2>Bienvenido {{ usuario.nombre }}</h2>
+                            <h2>Bienvenido {{ usuario.nombre}}</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Slider Area -->
+
+        <!-- Sart Books Area -->
+        <div id="portfolio" class="our-team-area area-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="section-headline text-center">
+                            <h2>Todos los libros</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" ng-hide="showDetails">
+                        <div class="row container">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="single-blog-page">
+                                    <!-- search option start -->
+                                    <form action="#">
+                                        <div class="search-option" style="border: none;">
+                                            <input type="text" ng-keyup="getLibrosSearch()" ng-model="searchLibro" placeholder="Ingrese nombre de un libro...">
+                                            <button class="button" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <!-- search option end -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-top">
+                            <div class="col-md-3 col-sm-3 col-xs-12" ng-repeat="libro in libros">
+                                <div class="single-team-member">
+                                    <div class="team-img">
+                                        <a href="#" class="text-center">
+                                            <img src="img/books/{{libro.foto}}" alt="">
+                                        </a>
+                                        <div class="team-social-icon text-center">
+                                            <ul>
+                                                <li>
+                                                    <a>
+                                                        <i class="fa fa-eye" ng-click="showDetailsBook(libro)"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="agregarCarrito(libro)">
+                                                        <i class="fa fa-plus-circle"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="team-content text-center">
+                                        <h4>{{libro.nombre}}</h4>
+                                        <p>{{libro.autor}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 row" ng-hide="!showDetails">
+                        <!-- single-well start-->
+                        <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                            <img src="img/books/{{libro.foto}}">
+                        </div>
+
+                        <!-- single-well end-->
+                        <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+                            <div class="well-middle">
+                                <div class="single-well">
+                                    <a>
+                                        <strong><h3>DETALLES DEL LIBRO</h3></strong
+                                    </a>
+                                    <strong><p>Nombre del libro: {{libro.nombre}}</p></strong>
+                                    <strong><p>Autores del libro: {{libro.autor}}</p></strong>
+                                    <strong><p>Editorial del libro: {{libro.editorial}}</p></strong>
+                                    <strong><p>Precio del libro: {{libro.precio}}</p></strong>
+                                    <strong><p>Categoria del libro: {{libro.categoria}}</p></strong>
+                                    <strong><p>Año de publicacion del libro: {{libro.ano_publicacion}}</p></strong>
+                                    <strong><p>Descripcion del libro: {{libro.descripcion}}</p></strong>
+                                </div>
+                                <button ng-click="hideDetailsBook();" class="sus-btn" style="margin-left: 0px;">
+                                    Regresar 
+                                </button>
+                                <button ng-click="agregarCarrito(libro)" class="sus-btn">
+                                    Add to car 
+                                </button>
+                            </div>                            
+                        </div>
+                        <!-- End col-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sart Books Area -->
 
         <!-- Start About area -->
         <div id="about" class="about-area area-padding">
@@ -707,146 +806,6 @@
         </div>
         <!-- End reviews Area -->
 
-        <!-- Start portfolio Area -->
-        <div id="portfolio" class="portfolio-area area-padding fix">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="section-headline text-center">
-                            <h2>Our Portfolio</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Start Portfolio -page -->
-                    <div class="awesome-project-1 fix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="awesome-menu ">
-                                <ul class="project-menu">
-                                    <li>
-                                        <a href="#" class="active" data-filter="*">All</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-filter=".development">Development</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-filter=".design">Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-filter=".photo">Photoshop</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="awesome-project-content">
-                        <!-- single-awesome-project start -->
-                        <div class="col-md-4 col-sm-4 col-xs-12 design development">
-                            <div class="single-awesome-project">
-                                <div class="awesome-img">
-                                    <a href="#"><img src="img/portfolio/1.jpg" alt="" /></a>
-                                    <div class="add-actions text-center">
-                                        <div class="project-dec">
-                                            <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
-                                                <h4>Business City</h4>
-                                                <span>Web Development</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single-awesome-project end -->
-                        <!-- single-awesome-project start -->
-                        <div class="col-md-4 col-sm-4 col-xs-12 photo">
-                            <div class="single-awesome-project">
-                                <div class="awesome-img">
-                                    <a href="#"><img src="img/portfolio/2.jpg" alt="" /></a>
-                                    <div class="add-actions text-center">
-                                        <div class="project-dec">
-                                            <a class="venobox" data-gall="myGallery" href="img/portfolio/2.jpg">
-                                                <h4>Blue Sea</h4>
-                                                <span>Photosho</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single-awesome-project end -->
-                        <!-- single-awesome-project start -->
-                        <div class="col-md-4 col-sm-4 col-xs-12 design">
-                            <div class="single-awesome-project">
-                                <div class="awesome-img">
-                                    <a href="#"><img src="img/portfolio/3.jpg" alt="" /></a>
-                                    <div class="add-actions text-center">
-                                        <div class="project-dec">
-                                            <a class="venobox" data-gall="myGallery" href="img/portfolio/3.jpg">
-                                                <h4>Beautiful Nature</h4>
-                                                <span>Web Design</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single-awesome-project end -->
-                        <!-- single-awesome-project start -->
-                        <div class="col-md-4 col-sm-4 col-xs-12 photo development">
-                            <div class="single-awesome-project">
-                                <div class="awesome-img">
-                                    <a href="#"><img src="img/portfolio/4.jpg" alt="" /></a>
-                                    <div class="add-actions text-center">
-                                        <div class="project-dec">
-                                            <a class="venobox" data-gall="myGallery" href="img/portfolio/4.jpg">
-                                                <h4>Creative Team</h4>
-                                                <span>Web design</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single-awesome-project end -->
-                        <!-- single-awesome-project start -->
-                        <div class="col-md-4 col-sm-4 col-xs-12 development">
-                            <div class="single-awesome-project">
-                                <div class="awesome-img">
-                                    <a href="#"><img src="img/portfolio/5.jpg" alt="" /></a>
-                                    <div class="add-actions text-center text-center">
-                                        <div class="project-dec">
-                                            <a class="venobox" data-gall="myGallery" href="img/portfolio/5.jpg">
-                                                <h4>Beautiful Flower</h4>
-                                                <span>Web Development</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single-awesome-project end -->
-                        <!-- single-awesome-project start -->
-                        <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                            <div class="single-awesome-project">
-                                <div class="awesome-img">
-                                    <a href="#"><img src="img/portfolio/6.jpg" alt="" /></a>
-                                    <div class="add-actions text-center">
-                                        <div class="project-dec">
-                                            <a class="venobox" data-gall="myGallery" href="img/portfolio/6.jpg">
-                                                <h4>Night Hill</h4>
-                                                <span>Photoshop</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single-awesome-project end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- awesome-portfolio end -->
         <!-- start pricing area -->
         <div id="pricing" class="pricing-area area-padding">
             <div class="container">
@@ -1295,4 +1254,3 @@
         <script src="js/views/principalUsuario.js"></script>
     </body>
 </html>
-
