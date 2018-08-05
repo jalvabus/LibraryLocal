@@ -282,6 +282,8 @@ app.controller('principalController', ($scope, $http) => {
             } else {
                 swal(data, {
                     icon: "success",
+                }).then(()=>{
+                   location.reload(); 
                 });
             }
         });
@@ -300,12 +302,16 @@ app.controller('principalController', ($scope, $http) => {
             if (err) {
                 return console.log(err);
             }
+            console.log("******* TARJETAS *********");
+            console.log(response.data);
             if (response.data === "") {
+                console.log("******* if *********");
                 $scope.mostrarTarjetas2 = true;
                 $scope.mostrarTarjetas = false;
                 $scope.getTarjetaPrepago();
                 $scope.getTarjetaCredito();
             } else {
+                console.log("******* else *********");
                 let data = response.data;
                 console.log(data);
                 if (data.length > 0) {

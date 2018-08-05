@@ -54,7 +54,7 @@ public class DAO_Usuario {
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("Error $Usuarios > login : " + e);
+            System.out.println("Error DAO_Usuario > login : " + e);
             return null;
         }
     }

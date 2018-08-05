@@ -91,9 +91,6 @@
                                             <a class="page-scroll" href="#team">Premios</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="wishlist.jsp">Mi wishlist</a>
-                                        </li>
-                                        <li>
                                             <a class="page-scroll" href="compras.jsp">Mis compras</a>
                                         </li>
                                         <li>
@@ -116,7 +113,16 @@
         <!-- header end -->
 
         <!-- Start Slider Area -->
-        <div id="home" class="about-area area-padding" style="margin-top: 30px;">
+        <div id="home" class="about-area area-padding" style="margin-top: 0px;">
+            <%--
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li ng-if="usuario.tipo === 'Cliente'" class="breadcrumb-item"><a href="PrincipalUsuario.jsp">Inicio</a></li>
+                    <li ng-if="usuario.tipo === 'Admin'" class="breadcrumb-item"><a href="PrincipalGerente.jsp">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                </ol>
+            </nav>
+            --%>
             <div class="bend niceties preview-2"> 
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -535,7 +541,7 @@
                             <div class="about-move">
                                 <div class="services-details">
                                     <div class="single-services">
-                                        <img src="img/events/{{ evento.foto}}">
+                                        <img style="height: 200px;" src="img/events/{{ evento.foto}}">
                                         <h4>{{ evento.nombre}}</h4>
                                         <p>
                                             {{ evento.descripcion}}

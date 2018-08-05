@@ -54,7 +54,7 @@ public class tarjeta extends HttpServlet {
                 String tarjetas = gson.toJson($Tarjetas.getAllByStatus());
                 out.println(tarjetas);
             } else {
-
+                
             }
         }
 

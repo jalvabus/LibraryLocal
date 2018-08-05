@@ -351,7 +351,7 @@
         </div>
 
 
-        <!-- Start Footer bottom Area -->
+         <!-- Start Footer bottom Area -->
         <footer>
             <div class="footer-area">
                 <div class="container">
@@ -360,14 +360,62 @@
                             <div class="footer-content">
                                 <div class="footer-head">
                                     <div class="footer-logo">
-                                        <h2><span>e</span>Business</h2>
+                                        <h2><span>L</span>ibraryLocal</h2>
                                     </div>
-
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+                                    <ul ng-if="usuario">
+                                        <li ng-if="usuario.tipo === 'Admin'">
+                                            <a href="PrincipalGerente.jsp">
+                                                <i class="fa fa-check"></i> GestionarEventos
+                                            </a>
+                                        </li>
+                                        <li ng-if="usuario.tipo === 'Admin'">
+                                            <a href="PrincipalGerente.jsp">
+                                                <i class="fa fa-check"></i> GestionarLibros 
+                                            </a>
+                                        </li>
+                                        <li ng-if="usuario.tipo === 'Admin'">
+                                            <a href="tarjeta.jsp">
+                                                <i class="fa fa-check"></i> SubirTXT Tarjetas 
+                                            </a>
+                                        </li>
+                                        <li ng-if="usuario.tipo === 'Cliente'">
+                                            <a href="pagoBoletos.jsp">
+                                                <i class="fa fa-check"></i> Pagar Boleto 
+                                            </a>
+                                        </li>
+                                        <li ng-if="usuario.tipo === 'Cliente'">
+                                            <a href="PrincipalGerente.jsp">
+                                                <i class="fa fa-check"></i> Devolucion 
+                                            </a>
+                                        </li>
+                                        <li ng-if="usuario.tipo === 'Cliente'">
+                                            <a href="wishlist.jsp">
+                                                <i class="fa fa-check"></i> MiWishList 
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end single footer -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="footer-content">
+                                <div class="footer-head">
+                                    <h4>Acerca de Nosotros</h4>
+                                    <p>
+                                        <strong>CodeLabs</strong> es una empresa que se dedica al desarrollo de sotware ajustado a tu medida
+                                        Puedes localizarnos llamando o escribiendo a:
+                                    </p>
+                                    <div class="footer-contacts">
+                                        <p><span>Tel:</span> +52 55 16 36 56 15</p>
+                                        <p><span>Email:</span> codelabsoftware@example.com</p>
+                                        <p><span>Horas de trabajo:</span> 9am-5pm</p>
+                                    </div>
+                                    <p>O en nuestras redees sociales</p>
                                     <div class="footer-icons">
                                         <ul>
                                             <li>
-                                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                                <a href="http://www.facebook.com/CodeLabs-1901295480009037/" target="_blank"><i class="fa fa-facebook"></i></a>
                                             </li>
                                             <li>
                                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -387,30 +435,11 @@
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="footer-content">
                                 <div class="footer-head">
-                                    <h4>information</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                                    </p>
-                                    <div class="footer-contacts">
-                                        <p><span>Tel:</span> +123 456 789</p>
-                                        <p><span>Email:</span> contact@example.com</p>
-                                        <p><span>Working Hours:</span> 9am-5pm</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end single footer -->
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="footer-content">
-                                <div class="footer-head">
-                                    <h4>Instagram</h4>
+                                    <h4>Fotos</h4>
                                     <div class="flicker-img">
-                                        <a href="#"><img src="img/portfolio/1.jpg" alt=""></a>
-                                        <a href="#"><img src="img/portfolio/2.jpg" alt=""></a>
-                                        <a href="#"><img src="img/portfolio/3.jpg" alt=""></a>
-                                        <a href="#"><img src="img/portfolio/4.jpg" alt=""></a>
-                                        <a href="#"><img src="img/portfolio/5.jpg" alt=""></a>
-                                        <a href="#"><img src="img/portfolio/6.jpg" alt=""></a>
+                                        <a href="#"><img src="img/books/01.png" alt=""></a>
+                                        <a href="#"><img src="img/books/02.png" alt=""></a>
+                                        <a href="#"><img src="img/books/03.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
@@ -425,7 +454,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="copyright text-center">
                                 <p>
-                                    &copy; Copyright <strong>eBusiness</strong>. All Rights Reserved
+                                    &copy; Copyright <strong>CodeLabs</strong>. All Rights Reserved
                                 </p>
                             </div>
                             <div class="credits">
@@ -435,7 +464,7 @@
                                   Licensing information: https://bootstrapmade.com/license/
                                   Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eBusiness
                                 -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> editedBy <strong>CodeLabs</strong>.
                             </div>
                         </div>
                     </div>

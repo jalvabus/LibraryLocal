@@ -56,26 +56,97 @@ app.controller('ctrlCompra_boleto', ($scope, $http) => {
         });
     };
 
-    $scope.pagar = function (folio) {
+    $scope.pagar = function (folio, pago) {
         var action = 'pagar';
-        $http(
-                {
-                    method: 'POST',
-                    url: 'compra_boleto',
-                    data: 'action=' + action + '&folio=' + folio,
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-                }).then(function successCallback(response) {
-            console.log(response);
-            if (response.data === 'success') {
-                swal('Finalizado !', 'Pago realizado con exito.', 'success');
-                location.replace('comprobantepagoboleto?folio=' + folio);
-            } else {
-                swal('Oops !', response.data, 'error');
-            }
+        new Promise((resolve, reject) => {
+            var date1 = new Date(pago.fecha_compra);
+            var date2 = new Date(getDate());
+            var diffDays = date1.getDate() - date2.getDate();
+            console.log('Day difference: ' + diffDays);
+            resolve(diffDays);
+        }).then((diffDays) => {
+            /**
+             * Validacion para pago despues de 7 dias
+             */
+            if (Number(diffDays) === 0) {
+                $http(
+                        {
+                            method: 'POST',
+                            url: 'compra_boleto',
+                            data: 'action=' + action + '&folio=' + folio,
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                        }).then(function successCallback(response) {
+                    console.log(response);
+                    if (response.data === 'success') {
+                        swal('Finalizado !', 'Pago realizado con exito.', 'success');
+                        location.replace('comprobantepagoboleto?folio=' + folio);
+                    } else {
+                        swal('Oops !', response.data, 'error');
+                    }
 
-        }, function errorCallback(response) {
-            console.log(response);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+            } else if (Number(diffDays) < -7) {
+                $http(
+                        {
+                            method: 'POST',
+                            url: 'compra_boleto',
+                            data: 'action=' + action + '&folio=' + folio,
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                        }).then(function successCallback(response) {
+                    console.log(response);
+                    if (response.data === 'success') {
+                        swal('Finalizado !', 'Pago realizado con exito.', 'success');
+                        location.replace('comprobantepagoboleto?folio=' + folio);
+                    } else {
+                        swal('Oops !', response.data, 'error');
+                    }
+
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+            } else {
+                let params = "?action=cancelarEvento"
+                        + "&id_usuario=" + $scope.usuario.id_Usuario
+                        + "&id_ventaBoleto=" + pago.folio
+                        + "&nombreEvento=" + pago.evento.nombre
+                        + "&cantidadDevuelta=" + pago.cantidad_boletos
+                        + "&totalDevuelto=" + 0;
+                console.log(params);
+
+                $http({
+                    method: 'POST',
+                    url: 'evento' + params
+                }).then((response, err) => {
+                    console.log(response.data);
+                    $scope.getPagosRestantes();
+                    swal({
+                        title: "Concluyo su periodo de pago!",
+                        text: "Lo sentimos no podemos devolverle su dinero",
+                        icon: "error",
+                        button: "Aceptar"
+                    });
+                });
+
+            }
         });
+
+        function getDate() {
+            var x = new Date();
+            var y = x.getFullYear().toString();
+            var m = (x.getMonth() + 1).toString();
+            var d = x.getDate().toString();
+            if (m.length === 1) {
+                m = '0' + m;
+            }
+            if (d.length === 1) {
+                d = '0' + d;
+            }
+            var yyyymmdd = y + '-' + m + '-' + d;
+            return yyyymmdd;
+        }
+
     };
 
     $scope.getComprobantePago = function (folio) {

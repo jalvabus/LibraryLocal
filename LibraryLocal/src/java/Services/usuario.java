@@ -44,6 +44,8 @@ import javax.mail.internet.MimeMultipart;
 import java.sql.CallableStatement;
 import javax.servlet.http.HttpSession;
 
+import java.lang.Math;
+
 /**
  *
  * @author juana
@@ -191,10 +193,36 @@ public class usuario extends HttpServlet {
                 enviarCorreoDetalle(usuario.getCorreo(), null);
             }
 
-            System.out.println("Insertando en DetalleVentas");
-
             $compra.actualizarSaldoTarjeta(noTarjeta, tipoTarjeta, nuevoSaldo);
 
+            /**
+             * Insertar puntos compra
+             */
+            DAO_PuntosCompra $punticos = new DAO_PuntosCompra();
+            PuntosCompra punticos = new PuntosCompra();
+            punticos = $punticos.getPuntosByID(Integer.parseInt(id_usuario));
+            if (punticos.getPuntos() > 0) {
+                int puntos = punticos.getPuntos();
+
+                int divisor = Math.round(total);
+                int dividendo = 10;
+                int sumaPuntos = divisor / dividendo;
+
+                punticos.setPuntos(sumaPuntos + puntos);
+                $punticos.actualizarPuntos(punticos);
+                int suma = sumaPuntos + puntos;
+                out.println("Se han agregado " + sumaPuntos + " puntos a tu tarjeta. \nTu total de puntos es: " + suma);
+            } else {
+                punticos.setIdUsuario(Integer.parseInt(id_usuario));
+                
+                int divisor = Math.round(total);
+                int dividendo = 10;
+                int sumaPuntos = divisor / dividendo;
+                
+                punticos.setPuntos(sumaPuntos);
+                $punticos.insertPuntos(punticos);
+                out.println("Se han agregado " + sumaPuntos + " puntos a tu tarjeta. \nTu total de puntos es: " + sumaPuntos);
+            }
         }
 
         /*

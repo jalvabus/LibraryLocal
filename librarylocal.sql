@@ -87,7 +87,7 @@ CREATE TABLE `canjear_premio` (
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `canjear_premio_ibfk_1` FOREIGN KEY (`id_premio`) REFERENCES `premio` (`id_premio`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `canjear_premio_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `canjear_premio` (
 
 LOCK TABLES `canjear_premio` WRITE;
 /*!40000 ALTER TABLE `canjear_premio` DISABLE KEYS */;
-INSERT INTO `canjear_premio` VALUES (1,1,2,'2018-07-08'),(2,1,2,'2018-07-08'),(3,2,2,'2018-07-08'),(4,1,2,'2018-07-10'),(5,1,2,'2018-07-12'),(6,1,2,'2018-07-12'),(7,2,4,'2018-07-22'),(8,2,4,'2018-07-23');
+INSERT INTO `canjear_premio` VALUES (1,1,2,'2018-07-08'),(2,1,2,'2018-07-08'),(3,2,2,'2018-07-08'),(4,1,2,'2018-07-10'),(5,1,2,'2018-07-12'),(6,1,2,'2018-07-12'),(7,2,4,'2018-07-22'),(8,2,4,'2018-07-23'),(9,4,8,'2018-08-03');
 /*!40000 ALTER TABLE `canjear_premio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `compra_boleto` (
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `compra_boleto_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `compra_boleto_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `compra_boleto` (
 
 LOCK TABLES `compra_boleto` WRITE;
 /*!40000 ALTER TABLE `compra_boleto` DISABLE KEYS */;
-INSERT INTO `compra_boleto` VALUES (17,1,1,200.00,0,'Pagado','2018-07-12',2,4),(24,2,1,0.00,0,'Pagado','2018-07-18',4,2),(25,1,1,0.00,0,'Pagado','2018-07-19',4,7),(27,1,1,20.00,0,'Pagado','2018-07-22',6,4),(28,2,1,40.00,0,'Pagado','2018-07-23',7,4),(29,1,1,20.00,0,'Pagado','2018-07-23',8,4);
+INSERT INTO `compra_boleto` VALUES (17,1,1,200.00,0,'Pagado','2018-07-12',2,4),(24,2,1,0.00,0,'Pagado','2018-07-18',4,2),(27,1,1,20.00,0,'Pagado','2018-07-22',6,4),(28,2,1,40.00,0,'Pagado','2018-07-23',7,4),(29,1,1,20.00,0,'Pagado','2018-07-23',8,4),(30,2,1,400.00,0,'Pagado','2018-08-11',9,8);
 /*!40000 ALTER TABLE `compra_boleto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `detalle_venta` (
   KEY `codigo_compra` (`codigo_compra`),
   CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id_libro`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`codigo_compra`) REFERENCES `venta` (`codigo_compra`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,6 @@ CREATE TABLE `detalle_venta` (
 
 LOCK TABLES `detalle_venta` WRITE;
 /*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
-INSERT INTO `detalle_venta` VALUES (3,14,2,39);
 /*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,7 +372,7 @@ CREATE TABLE `evento` (
   `foto` varchar(200) DEFAULT NULL,
   `calificacion` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_evento`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,7 +381,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'Evento curso de AJAX','Imagenes',30,'Activo',150.00,'Curso de AJAX para principantes desde 0','2018-07-07','2018-07-07','01.png',10),(2,'Evento curso de AJAX','Abierto',39,'Disponible',200.00,'Evento para principantes','2018-07-10','2018-01-01','02.png',10),(3,'Firma de autografos','Imagenes',10,'Activo',200.00,'hola','2018-07-12','2018-01-01','biodanza.jpg',10),(4,'Prueba evento','FirmaAutografos',0,'Activo',0.00,'ola','2018-07-12','2019-01-01','taller.png',0),(5,'Curso de JAva','Imagenes',20,'Activo',20.00,'Curso para principiantes','2018-07-22','2018-07-22','taller.png',10),(6,'Ejemplo','Imagenes',19,'Activo',20.00,'fdskljq','2018-07-22','2018-07-22','biodanza.jpg',10),(7,'Nuevo evento','Imagenes',18,'Activo',20.00,'Juan','2018-07-23','2018-07-23','biodanza.jpg',0),(8,'Veronica','Imagenes',19,'Activo',20.00,'Vero','2018-07-23','2018-07-24','30aniversario.jpg',10);
+INSERT INTO `evento` VALUES (1,'Evento curso de AJAX','Imagenes',30,'Activo',150.00,'Curso de AJAX para principantes desde 0','2018-07-07','2018-07-07','01.png',10),(2,'Evento curso de AJAX','Abierto',39,'Disponible',200.00,'Evento para principantes','2018-07-10','2018-01-01','02.png',10),(3,'Firma de autografos','Imagenes',10,'Activo',200.00,'hola','2018-07-12','2018-01-01','biodanza.jpg',10),(4,'Prueba evento','FirmaAutografos',0,'Activo',0.00,'ola','2018-07-12','2019-01-01','taller.png',0),(5,'Curso de JAva','Imagenes',20,'Activo',20.00,'Curso para principiantes','2018-07-22','2018-07-22','taller.png',10),(6,'Ejemplo','Imagenes',19,'Activo',20.00,'fdskljq','2018-07-22','2018-07-22','biodanza.jpg',10),(7,'Nuevo evento','Imagenes',18,'Activo',20.00,'Juan','2018-07-23','2018-07-23','biodanza.jpg',0),(8,'Veronica','Imagenes',19,'Activo',20.00,'Vero','2018-07-23','2018-07-24','30aniversario.jpg',10),(9,'Hola','Imagenes',7,'Activo',200.00,'Hola como estas','2018-08-03','2018-08-04','diadelabiblioteca.png',10),(10,'Evento curso de AJAX','Abierto',30,'Disponible',150.00,'descripcion','2018-08-03','2018-08-03','01.png',10);
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,7 +434,7 @@ CREATE TABLE `premio` (
   `descripcion` varchar(250) DEFAULT NULL,
   `fotopremio` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_premio`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,8 +443,33 @@ CREATE TABLE `premio` (
 
 LOCK TABLES `premio` WRITE;
 /*!40000 ALTER TABLE `premio` DISABLE KEYS */;
-INSERT INTO `premio` VALUES (1,'La Vero',90,'Inactivo',1,'La mas mejor','08.jpg'),(2,'lampara',30,'Activo',0,'esta chida','03.jpg'),(3,'Yo mero',1000,'Activo',2,'soy el mejor','15.jpg');
+INSERT INTO `premio` VALUES (1,'La Vero',30000,'Inactivo',1,'La mas mejor','08.jpg'),(2,'lampara',30,'Activo',1,'esta chida','03.jpg'),(3,'Yo mero',1000,'Activo',2,'soy el mejor','15.jpg'),(4,'Licuadora',5,'Activo',0,'Licuadora Chica','16.jpg');
 /*!40000 ALTER TABLE `premio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `puntoscompra`
+--
+
+DROP TABLE IF EXISTS `puntoscompra`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `puntoscompra` (
+  `idPuntosCompra` int(11) NOT NULL AUTO_INCREMENT,
+  `id_Usuario` int(11) DEFAULT NULL,
+  `puntos` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idPuntosCompra`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `puntoscompra`
+--
+
+LOCK TABLES `puntoscompra` WRITE;
+/*!40000 ALTER TABLE `puntoscompra` DISABLE KEYS */;
+INSERT INTO `puntoscompra` VALUES (1,8,115),(2,10,63);
+/*!40000 ALTER TABLE `puntoscompra` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -464,7 +488,7 @@ CREATE TABLE `regalo` (
   PRIMARY KEY (`id_regalo`),
   KEY `codigo_compra` (`codigo_compra`),
   CONSTRAINT `regalo_ibfk_1` FOREIGN KEY (`codigo_compra`) REFERENCES `venta` (`codigo_compra`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -498,7 +522,7 @@ CREATE TABLE `registrar_ticket` (
 
 LOCK TABLES `registrar_ticket` WRITE;
 /*!40000 ALTER TABLE `registrar_ticket` DISABLE KEYS */;
-INSERT INTO `registrar_ticket` VALUES (21,'Registrado',696,69),(30,'Registrado',638,63),(123,'Registrado',0,0),(21312,'Registrado',0,0);
+INSERT INTO `registrar_ticket` VALUES (21,'Registrado',696,69),(30,'Registrado',638,63),(40,'Registrado',638,63),(50,'Registrado',638,63),(123,'Registrado',0,0),(21312,'Registrado',0,0);
 /*!40000 ALTER TABLE `registrar_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +550,7 @@ CREATE TABLE `registro` (
 
 LOCK TABLES `registro` WRITE;
 /*!40000 ALTER TABLE `registro` DISABLE KEYS */;
-INSERT INTO `registro` VALUES ('juanalva432@gmail.com','juan123','juanalva432@gmail.com','Cliente',0,'Confirmado'),('kitsunei1997120700@hotmail.com','cliente123456','kitsunei','Cliente',1234543,'Confirmado'),('SmilinMoonLibraryLocal@gmail.com','smiling123456','Smiling','Administrador',1234543,'Confirmado'),('vero.cure24@gmail.com','1234','vero.cure24@gmail.com','Cliente',0,'Confirmado');
+INSERT INTO `registro` VALUES ('2516360014jalvab@gmail.com','juan123','2516360014jalvab@gmail.com','Cliente',0,'Confirmado'),('kitsunei1997120700@hotmail.com','cliente123456','kitsunei','Cliente',1234543,'Confirmado'),('SmilinMoonLibraryLocal@gmail.com','smiling123456','Smiling','Administrador',1234543,'Confirmado'),('verito-5214@hotmail.com','vero','verito-5214@hotmail.com','Cliente',0,'Confirmado'),('vero.cure24@gmail.com','1234','vero.cure24@gmail.com','Cliente',0,'Confirmado');
 /*!40000 ALTER TABLE `registro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -630,7 +654,7 @@ CREATE TABLE `sugerencia` (
   PRIMARY KEY (`id_sugerencia`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `sugerencia_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -658,7 +682,7 @@ CREATE TABLE `tarjeta` (
   `idUsuario` int(11) DEFAULT NULL,
   `vigencia` date DEFAULT NULL,
   PRIMARY KEY (`idTarjeta`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -667,7 +691,6 @@ CREATE TABLE `tarjeta` (
 
 LOCK TABLES `tarjeta` WRITE;
 /*!40000 ALTER TABLE `tarjeta` DISABLE KEYS */;
-INSERT INTO `tarjeta` VALUES (1,25,1010101010101010,'Ocupado',7,'2019-05-25'),(2,30,4564564678975648,'DISPONIBLE',0,'2019-04-17'),(3,50,2124444545788788,'OCUPADO',0,'2019-06-01');
 /*!40000 ALTER TABLE `tarjeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -696,7 +719,7 @@ CREATE TABLE `tarjeta_credito` (
 
 LOCK TABLES `tarjeta_credito` WRITE;
 /*!40000 ALTER TABLE `tarjeta_credito` DISABLE KEYS */;
-INSERT INTO `tarjeta_credito` VALUES ('123321','Activada',2,-200,3000),('1234567897658','Activada',7,2063,3000),('4564564678975649','Activada',4,2258,3000);
+INSERT INTO `tarjeta_credito` VALUES ('123321','Activada',2,-200,3000),('45427427','Activada',9,3000,3000),('4564564678975649','Activada',4,2258,3000),('67554565','Activada',8,-2386,3000);
 /*!40000 ALTER TABLE `tarjeta_credito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -726,7 +749,7 @@ CREATE TABLE `tarjeta_prepago` (
 
 LOCK TABLES `tarjeta_prepago` WRITE;
 /*!40000 ALTER TABLE `tarjeta_prepago` DISABLE KEYS */;
-INSERT INTO `tarjeta_prepago` VALUES ('1010101010101010','Activada',7,225,NULL,NULL),('123322','Activada',2,1150,3000,132),('4564564678975648','Activada',4,1274,NULL,240);
+INSERT INTO `tarjeta_prepago` VALUES ('123322','Activada',2,1150,3000,132),('4564564678975648','Activada',4,1274,NULL,300),('9976567435263267','Activada',8,50,NULL,58);
 /*!40000 ALTER TABLE `tarjeta_prepago` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -780,7 +803,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id_usuario`),
   KEY `correo` (`correo`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`correo`) REFERENCES `registro` (`correo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -789,7 +812,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'SmilinMoonLibraryLocal@gmail.com','Pedro','Reyes','Torres',23,'F',5543564432,'Manuel Buen dia','Nose','Tecamac','Mexico','Admin','123'),(2,'kitsunei1997120700@hotmail.com','Gustavo','Padilla','Ruiz',23,'F',5543564432,'Manuel Buen dia','Tecamac','Tecamac','Mexico','Cliente','123'),(4,'vero.cure24@gmail.com','veronica','chavez','torres',24,'F',5515036628,'san francisco','santo domingo','tecamac','mexico','Cliente','1234'),(7,'juanalva432@gmail.com','Juan','Alva','Bustamante',20,'M',5516365615,'Trevi','Zumpang','Zumpango','Mexico','Cliente','juan123');
+INSERT INTO `usuario` VALUES (1,'SmilinMoonLibraryLocal@gmail.com','Pedro','Reyes','Torres',23,'F',5543564432,'Manuel Buen dia','Nose','Tecamac','Mexico','Admin','123'),(2,'kitsunei1997120700@hotmail.com','Gustavo','Padilla','Ruiz',23,'F',5543564432,'Manuel Buen dia','Tecamac','Tecamac','Mexico','Cliente','123'),(4,'vero.cure24@gmail.com','veronica','chavez','torres',24,'F',5515036628,'san francisco','santo domingo','tecamac','mexico','Cliente','1234'),(8,'2516360014jalvab@gmail.com','Juan','Añva','Bustamante',20,'M',551635615,'Trevi','Nuevo Paseos','Zumpango','Mexico','Cliente','juan123'),(9,'verito-5214@hotmail.com','Vero','Chavez','Torres',25,'F',5516365615,'Trevi','Buenavista','Zumpango','MExico','Cliente','vero');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -811,7 +834,7 @@ CREATE TABLE `venta` (
   `id_usuario` int(11) DEFAULT NULL,
   `cantidad_libros` int(11) DEFAULT NULL,
   PRIMARY KEY (`codigo_compra`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -820,7 +843,6 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (39,'credito',812,'Trevi, Zumpang , Zumpango , Mexico',81,'propia','2018-07-19',7,1);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -881,28 +903,6 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'librarylocal'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `insertCredito` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertCredito`(codigo varchar(16))
-BEGIN 
-DECLARE
-idUsuario int;
-set idUsuario = (select max(id_usuario) from usuario);
-INSERT INTO tarjeta_credito values (codigo, 'Activada', idUsuario, 3000, 3000);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -913,4 +913,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-23  0:49:00
+-- Dump completed on 2018-08-03  5:52:45

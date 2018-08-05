@@ -81,13 +81,13 @@
                                             <a class="page-scroll" href="miperfil.jsp">Mi Perfil</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="#about">Gestionar Libros</a>
+                                            <a class="page-scroll" href="#about">Gestion Libros</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="#services">Gestionar Eventos</a>
+                                            <a class="page-scroll" href="#services">Gestion Eventos</a>
                                         </li>
                                         <li>
-                                            <a class="page-scroll" href="#team">Gestionar Premios</a>
+                                            <a class="page-scroll" href="#team">Gestion Premios</a>
                                         </li>
                                         <!-- 
                                         <li>
@@ -391,7 +391,7 @@
                                                 <div class="form-group ng-pristine ng-untouched ng-valid ng-not-empty col-lg-12">
                                                     <h5>Imagen del Evento</h5>
                                                     <input type="file" name="image" onchange="angular.element(this).scope().uploadFileEvento(this.files)">
-                                                    <img src="img/books/{{evento.foto}}">
+                                                    <img src="img/events/{{evento.foto}}">
                                                 </div>
                                                 <div class="text-center col-lg-6" ng-disabled="!evento.nombre || !evento.calificacion || !evento.status" ng-hide="formVisivilityEvento">
                                                     <button ng-click="saveEditEvento()" class="ready-btn page-scroll" >Actualizar Evento</button>

@@ -475,7 +475,7 @@ app.controller('carritoController', ($scope, $http) => {
             console.log(data);
             swal({
                 title: "Compra concretada",
-                text: "Espere en lo que se genera su ticket de compra",
+                text: data,
                 icon: "success",
                 button: "OK"
             });
